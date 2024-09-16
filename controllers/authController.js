@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
-import { compareString, createJWT, hashString } from "../utils";
-import Users from "../models/userModel";
-import { sendVerificationEmail } from "../utils/sendEmail";
+import Users from "../models/userModel.js";
+import { compareString, createJWT, hashString } from "../utils/index.js";
+import { sendVerificationEmail } from "../utils/sendEmail.js";
 
 // Register controller
 // request, response, next
@@ -10,7 +10,7 @@ export const register = async (req, res, next) => {
 
   // Validate fields
   if (!(firstName || lastName || email || password)) {
-    next("Please fill the required fiel!");
+    next("Please fill the required field!");
     return;
   }
 

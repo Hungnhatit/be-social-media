@@ -40,18 +40,10 @@ const commentSchema = new mongoose.Schema(
       },
     ],
     likes: [{ type: String }],
-
-
-
-
-
   },
   { timestamps: true }
-
-
-
 );
 
-const Comments = mongoose.model("Posts", commentSchema);
+const Comments = mongoose.model("Comments", commentSchema);
 
 export default Comments;

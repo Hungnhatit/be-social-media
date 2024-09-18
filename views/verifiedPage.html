@@ -1,0 +1,79 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verified Page</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/fontawesome.min.css"
+    integrity="sha512-B46MVOJpI6RBsdcU307elYeStF2JKT87SsHZfRSkjVi4/iZ3912zXi45X5/CBr/GbCyLx6M1GQtTKYRd52Jxgw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+  <div class="cart">
+    <div class="icon">
+      <span id="statusIcon" class=""></span>
+      <div id="statusMessage" class=""></div>
+
+      <a href="http://localhost:8800/login" id="btn" class="">Login</a>
+    </div>
+  </div>
+
+  <script>
+    // Get message parameter from URL
+    const urlParams = new URLSearchParams(windows.location.search);
+    const message = urlParams.get("message");
+    const status = urlParams.get("status");
+
+    // Get the card, status icon, and status message elements
+    const card = document.querySelector('.card');
+    const statusIcon = document.getElementById('statusIcon');
+    const statusMessage = document.getElementById('statusMessage');
+    const btn = document.getElementById("btn");
+
+    if (status === 'success') {
+      statusIcon.innerHTML = `<i class="fa fa-check" aria-hidden="true"></i>`;
+      statusMessage.textContent = message;
+      card.classList.add('success');
+      statusIcon.classList.add('success');
+      statusMessage.classList.add('success');
+      btn.classList.add("showBtn");
+    } else if (status === 'error') {
+      statusIcon.innerHTML = "❌";
+      statusMessage.textContent = message;
+      card.classList.add('error');
+      statusIcon.classList.add('error');
+      statusMessage.classList.add('error');
+      btn.classList.add('hideBtn');
+    }
+
+
+
+  </script>
+
+</body>
+
+</html> -->
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Web site created using create-react-app" />
+  <link rel="apple-touch-icon" href="/logo192.png" />
+  <link rel="manifest" href="/manifest.json" />
+  <title>ShareFun</title>
+  <script defer="defer" src="/static/js/main.4e9a0992.js"></script>
+  <link href="/static/css/main.2609a62c.css" rel="stylesheet">
+</head>
+
+<body><noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
+</body>
+
+</html>

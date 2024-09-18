@@ -16,10 +16,11 @@ const userAuth = async (req, res, next) => {
     req.body.user = {
       userId: userToken.userId,
     }
-
     next();
   } catch (error) {
     console.log(error);
     next("Authentication==failed");
   }
 }
+
+export default userAuth;

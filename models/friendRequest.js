@@ -16,11 +16,6 @@ const requestSchema = Schema(
     }
   },
   { timestamps: true }
-
-
-
-
-
 );
 
 const FriendRequest = mongoose.model("FriendRequest", requestSchema);

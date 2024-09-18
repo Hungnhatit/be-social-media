@@ -3,11 +3,11 @@ import mongoose, { Schema } from "mongoose";
 const passwordResetSchema = Schema(
   {
     userId: {
-      type: Schema.Types.ObjectId,
+      type: String,
       unique: true,
     },
     email: {
-      type: Schema.Types.ObjectId,
+      type: String,
       unique: true,
     },
     token: String,

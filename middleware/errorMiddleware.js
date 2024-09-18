@@ -2,7 +2,6 @@
 // Xử lý các lỗi khác nhau và trả về phản hồi cho người dùng
 const errorMiddleware = (err, req, res, next) => {
   // next: hàm chuyển tiếp đến lỗi đến middleware tiếp theo nếu cần
-
   // cấu trúc mặc định của lỗi
   const defaultError = {
     statusCode: 404,

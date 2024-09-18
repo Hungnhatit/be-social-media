@@ -385,6 +385,7 @@ export const suggestedFriends = async (req, res, next) => {
     const { userId } = req.body.user;
     let queryObject = {};
 
+    // $ne và $nin là các toán tử truy vấn được sử dụng để lọc kết quả theo các điều kiện cụ thể
     queryObject._id = { $ne: userId };
     queryObject.friend = { $nin: userId };
 

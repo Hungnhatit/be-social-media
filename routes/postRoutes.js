@@ -19,7 +19,7 @@ router.get('/comments/:postId', getComments);
 
 // Like post and like comment on posts
 router.post('/like/:id', userAuth, likePost);
-router.post('/like-comment/:id/:rid?', userAuth, likePostComment); //id: id của comment, rid: id của reply comment
+router.post('/like-comment/:id/:rid?', userAuth, likePostComment); //id: id của comment, rid: id của reply comment, dùng để like comment hoặc like reply comment
 router.post('/comment/:id', userAuth, commentPost);
 router.post('/reply-comment/:id', userAuth, replyPostComment);
 

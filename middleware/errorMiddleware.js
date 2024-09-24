@@ -6,7 +6,7 @@ const errorMiddleware = (err, req, res, next) => {
   const defaultError = {
     statusCode: 404,
     success: "failed",
-    message: err,
+    message: typeof err === "string" ? err : err.message,
   };
 
   if (err?.name === "ValidationError") {
@@ -18,7 +18,7 @@ const errorMiddleware = (err, req, res, next) => {
 
   // duplicate error: xử lý lỗi trùng lặp dữ liệu
   if (err.code && err.code === 11000) {
-    defaultError.statusCode = 404;
+    defaultError.statusCode = 400;
     defaultError.message = `${Object.values(
       err.keyValue
     )} field has to be unique`

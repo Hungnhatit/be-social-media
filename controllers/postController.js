@@ -11,13 +11,13 @@ export const createPost = async (req, res, next) => {
     if (!description) {
       next("You must have a description!");
       return;
+      // return res.status(404).json({ success: "failed", message: "You must have a description!" });
     }
 
     const post = await Posts.create({
       userId,
       description,
       image,
-      // postId, likes, comments, timestamps,
     });
 
     // Kết quả khi trả về
@@ -29,9 +29,10 @@ export const createPost = async (req, res, next) => {
 
   } catch (error) {
     console.log(error);
-    res.status(404).json({
-      message: error.message
-    })
+    // res.status(404).json({
+    //   message: error.message
+    // })
+    next(error);
   }
 
 }

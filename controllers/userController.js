@@ -100,7 +100,6 @@ export const requestPasswordReset = async (req, res) => {
   }
 }
 
-
 export const resetPassword = async (req, res) => {
   const { userId, token } = req.params;
 

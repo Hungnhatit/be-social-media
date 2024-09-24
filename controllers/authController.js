@@ -10,7 +10,7 @@ export const register = async (req, res, next) => {
 
   // Validate fields
   if (!(firstName || lastName || email || password)) {
-    next("Please fill the required field!");
+    next("Please fill required field!");
     return;
   }
 
@@ -18,7 +18,7 @@ export const register = async (req, res, next) => {
     const userExist = await Users.findOne({ email });
     if (userExist) {
       next("Email address already exists");
-      return;
+      return
     }
     const hashedPassword = await hashString(password);
 
@@ -36,9 +36,6 @@ export const register = async (req, res, next) => {
     console.log(error);
     res.status(404).json({ message: error.message });
   }
-
-
-
 }
 
 // Login controller 
@@ -61,8 +58,8 @@ export const login = async (req, res, next) => {
       });
 
     if (!user) {
-      next("Invalid email or password");
-      return;
+      // next("Invalid email or password");
+      return res.status(404).json({ message: "Invalid email or password" });
     }
 
     //Kiểm tra email đã được xác minh chưa

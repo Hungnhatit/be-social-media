@@ -287,32 +287,32 @@ export const friendRequest = async (req, res, next) => {
 export const getFriendRequest = async (req, res) => {
   try {
     const { userId } = req.body.user;
-    const request = await FriendRequest
-      .find({
-        requestTo: userId,
-        requestStatus: "Pending",
-      })
+
+    const request = await FriendRequest.find({
+      requestTo: userId,
+      requestStatus: "Pending",
+    })
       .populate({
-        "path": "requestFrom",
-        "select": "firstName lastName profileUrl profession -password"
+        path: "requestFrom",
+        select: "firstName lastName profileUrl profession -password",
       })
       .limit(10)
       .sort({
-        _id: -1
+        _id: -1,
       });
 
     res.status(200).json({
       success: true,
-      data: request
+      data: request,
     });
 
   } catch (error) {
     console.log(error);
     res.status(500).json({
-      message: "Auth error",
+      message: "auth error",
       success: false,
-      error: error.message
-    })
+      error: error.message,
+    });
   }
 }
 

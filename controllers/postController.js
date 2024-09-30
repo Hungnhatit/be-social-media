@@ -50,7 +50,7 @@ export const getPosts = async (req, res, next) => {
     const searchPostQuery = {
       $or: [
         {
-          description: { $regex: search, $option: "i" },
+          description: { $regex: search, $options: "i" },
         },
       ],
     };
@@ -155,7 +155,7 @@ export const getComments = async (req, res, next) => {
       })
       .populate({
         path: "replies.userId",
-        select: "firstName lastName location profileUrl -pasword",
+        select: "firstName lastName location profileUrl -password",
       })
       .sort({
         _id: -1
@@ -298,6 +298,7 @@ export const commentPost = async (req, res, next) => {
 
     // Update the post with comments id
     const post = await Posts.findById(id);
+
     post.comments.push(newComment._id);
 
     const updatedPost = await Posts.findByIdAndUpdate(id, post, {

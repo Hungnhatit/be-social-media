@@ -386,12 +386,13 @@ export const suggestedFriends = async (req, res, next) => {
 
     // $ne và $nin là các toán tử truy vấn được sử dụng để lọc kết quả theo các điều kiện cụ thể
     queryObject._id = { $ne: userId };
-    queryObject.friend = { $nin: userId };
+    queryObject.friends = { $nin: userId };
 
     let queryResult = Users.find(queryObject)
       .limit(15)
       .select("firstName lastName profileUrl profession -password");
 
+    const suggestedFriends = await queryResult;
     res.status(200).json({
       success: true,
       data: suggestedFriends,

@@ -34,7 +34,35 @@ export const createPost = async (req, res, next) => {
     // })
     next(error);
   }
+}
 
+export const updatePost = async (req, res, next) => {
+  try {
+    const { description, image } = req.body;
+    if (!description) {
+      next("Please provde required field!");
+      return;
+    }
+
+    const { id } = req.params;
+
+    const updatePost = {
+      description,
+      image
+    };
+
+    const post = await Posts.findByIdAndUpdate(id, updatePost, { new: true });
+
+    res.status(200).json({
+      success: true,
+      message: "Post has been updated successfully!"
+    })
+  } catch (error) {
+    console.log(error);
+    res.status(404).json({
+      message: error.message
+    });
+  }
 }
 
 export const getPosts = async (req, res, next) => {
@@ -92,7 +120,6 @@ export const getPosts = async (req, res, next) => {
       message: error.message,
     })
   }
-
 }
 
 export const getPost = async (req, res, next) => {
@@ -179,13 +206,16 @@ export const likePost = async (req, res, next) => {
     const { userId } = req.body.user;
     const { id } = req.params; //Post id
 
+
     const post = await Posts.findById(id);
 
     const index = post.likes.findIndex((pid) => pid === String(userId));
 
     if (index === -1) {
-      post.likes.push(userId);
+      post.likes.push(String(userId));
+      console.log(true);
     } else {
+      console.log(false);
       post.likes = post.likes.filter((pid) => pid !== String(userId));
     }
 
@@ -220,6 +250,8 @@ export const likePostComment = async (req, res, next) => {
       } else {
         comment.likes = comment.likes.filter((i) => i !== String(userId));
       }
+
+      console.log(comment.likes)
 
       const updated = await Comments.findByIdAndUpdate(id, comment, {
         new: true,
@@ -357,5 +389,4 @@ export const deletePost = async (req, res, next) => {
     console.log(error);
     res.status(404).json({ message: error.message });
   }
-
 } 

@@ -142,7 +142,6 @@ export const getPost = async (req, res, next) => {
     res.status(404).json({
       message: error.message,
     })
-
   }
 }
 

@@ -1,11 +1,14 @@
 import JWT from "jsonwebtoken";
 
-// Xác thực người dùng
+// Middleware xác thực người dùng
 const userAuth = async (req, res, next) => {
   const authHeader = req?.headers?.authorization;
 
   if (!authHeader || !authHeader?.startsWith("Bearer")) {
-    next("Authentication==failed");
+    return res.status(401).json({
+      success: false,
+      message: "Authentication failed: no token provided"
+    })
   }
 
   const token = authHeader?.split(" ")[1];
@@ -16,6 +19,7 @@ const userAuth = async (req, res, next) => {
       userId: userToken.userId,
     }
     next();
+
   } catch (error) {
     console.log(error);
     next("Authentication failed");

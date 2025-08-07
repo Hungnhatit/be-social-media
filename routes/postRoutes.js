@@ -1,7 +1,7 @@
 import express from "express";
 import path from "path";
 import userAuth from "../middleware/authMiddleware.js";
-import { commentPost, createPost, deletePost, getComments, getPost, getPosts, getUserPosts, likePost, likePostComment, replyPostComment } from "../controllers/postController.js";
+import { commentPost, createPost, deletePost, getComments, getPost, getPosts, getUserPosts, likePost, likePostComment, replyPostComment, updatePost } from "../controllers/postController.js";
 
 const router = express.Router();
 
@@ -10,8 +10,11 @@ router.post('/create-post', userAuth, createPost);
 
 // Get posts
 router.post('/', userAuth, getPosts);
-router.post('/:id', userAuth, getPost);
+router.get('/:id', getPost);
 router.post('/get-user-post/:id', userAuth, getUserPosts);
+
+// Update post
+router.post('/update-post/:id', userAuth, updatePost);
 
 // Comment
 router.get('/comments/:postId', getComments);

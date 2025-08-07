@@ -10,6 +10,7 @@ import helmet from "helmet";
 import dbConnection from "./dbConfig/index.js";
 import errorMiddleware from "./middleware/errorMiddleware.js";
 import router from "./routes/index.js";
+import { swaggerUi, swaggerSpec } from "./config/swagger.js";
 
 const __dirname = path.resolve(path.dirname(""));
 
@@ -24,7 +25,11 @@ const PORT = process.env.PORT || 8800;
 dbConnection();
 
 app.use(helmet());
-app.use(cors());
+app.use(cors({
+  origin: "http://localhost:3000", // Cho phép frontend gọi API
+  credentials: true, // Cho phép gửi cookies nếu có
+}));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json({ limit: "10mb" }));
@@ -35,7 +40,14 @@ app.use(errorMiddleware);
 app.use(morgan("dev"));
 app.use(router);
 
+// swagger ui
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.listen(PORT, () => {
   console.log(`Server is running on port: ${PORT}`);
+  console.log('Swagger UI: http://localhost:8800/api-docs');
 });
+
+
+
+export default app;
